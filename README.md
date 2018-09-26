@@ -46,6 +46,18 @@ All events in this plugin return an object with the following properties:
 - __level__: The battery charge percentage (0-100). _(Number)_
 - __isPlugged__: A boolean that indicates whether the device is plugged in. _(Boolean)_
 
+## get battery status
+
+    navigator.battery.getStatus(onBatteryStatus, onError);
+
+    function onBatteryStatus(status) {
+        console.log("Level: " + status.level + " isPlugged: " + status.isPlugged);
+    }
+
+    function onError(){
+
+    }
+
 ## batterystatus event
 
 Fires when the battery charge percentage changes by at least 1 percent, or when the device is plugged in or unplugged. Returns an [object][status_object] containing battery status.
