@@ -132,8 +132,14 @@
 - (void)getStatus:(CDVInvokedUrlCommand*)command
 {
     [self.commandDelegate runInBackground:^{
-        CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:getBatteryStatus];
+        if ([UIDevice currentDevice].batteryMonitoringEnabled == NO) {
+            [[UIDevice currentDevice] setBatteryMonitoringEnabled:YES];
+        }
+
+        CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary: [self getBatteryStatus]];
         [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+
+        [[UIDevice currentDevice] setBatteryMonitoringEnabled:NO];
     }];
 }
 
