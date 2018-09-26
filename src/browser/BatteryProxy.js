@@ -74,6 +74,11 @@ var Battery = {
         } catch (e) {
             console.warn('Error occured while trying to stop battery: ' + JSON.stringify(e));
         }
+    },
+
+    getStatus: function(sc, ec){
+        winCallBack = sc;
+        success ();
     }
 };
 

@@ -88,6 +88,21 @@ public class BatteryListener extends CordovaPlugin {
             callbackContext.success();
             return true;
         }
+        else if (action.equals("getStatus")) {
+            IntentFilter intentFilter = new IntentFilter();
+            intentFilter.addAction(Intent.ACTION_BATTERY_CHANGED);
+            if (this.receiver == null) {
+                this.receiver = new BroadcastReceiver() {
+                    @Override
+                    public void onReceive(Context context, Intent intent) {
+                        removeBatteryListener();
+                        callbackContext.success(this.getBatteryInfo(batteryIntent));
+                    }
+                };
+                webView.getContext().registerReceiver(this.receiver, intentFilter);
+            }
+            return true;
+        }
 
         return false;
     }

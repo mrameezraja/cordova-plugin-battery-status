@@ -56,11 +56,11 @@ function handlers () {
  */
 Battery.onHasSubscribersChange = function () {
   // If we just registered the first handler, make sure native listener is started.
-    if (this.numHandlers === 1 && handlers() === 1) {
+    /*if (this.numHandlers === 1 && handlers() === 1) {
         exec(battery._status, battery._error, 'Battery', 'start', []);
     } else if (handlers() === 0) {
         exec(null, null, 'Battery', 'stop', []);
-    }
+    }*/
 };
 
 /**
@@ -102,6 +102,20 @@ Battery.prototype._status = function (info) {
  */
 Battery.prototype._error = function (e) {
     console.log('Error initializing Battery: ' + e);
+};
+
+/**
+ * get battery status data without continous tracking
+ */
+Battery.prototype.start = function (sc, ec) {
+    exec(battery._status, battery._error, 'Battery', 'start', []);
+};
+
+/**
+ * get battery status data without continous tracking
+ */
+Battery.prototype.getStatus = function (sc, ec) {
+    exec(sc, ec, 'Battery', 'getStatus', []);
 };
 
 var battery = new Battery(); // jshint ignore:line
