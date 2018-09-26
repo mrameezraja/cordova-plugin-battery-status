@@ -37,7 +37,7 @@ Applications may use `window.addEventListener` to attach an event listener for a
 
 ## Installation
 
-    cordova plugin add cordova-plugin-battery-status
+    cordova plugin add https://github.com/mrameezraja/cordova-plugin-battery-status
 
 ## Status object
 
